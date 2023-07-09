@@ -56,15 +56,16 @@ def transcribe(audio):
     return chat_transcript, output_filename #converted_output
 
 # set a custom theme
-theme = gr.themes.Default().set(
-    body_background_fill="#000000",
-)
+#theme = gr.themes.Default().set(
+ #   body_background_fill="#000000",
+#)
 
-with gr.Blocks(theme=theme) as ui:
+with gr.Blocks() as ui:
     # advisor image input and microphone input
     #advisor = gr.Image(value=config.ADVISOR_IMAGE).style(width=config.ADVISOR_IMAGE_WIDTH, height=config.ADVISOR_IMAGE_HEIGHT)
+    gr.Markdown("Start typing below and then click **Run** to chat")
     audio_input = gr.Audio(source="microphone", type="filepath")
-
+    
     # text transcript output and audio 
     text_output = gr.Textbox(label="Conversation Transcript")
     audio_output = gr.Audio()
@@ -72,7 +73,9 @@ with gr.Blocks(theme=theme) as ui:
     btn = gr.Button("Run")
     btn.click(fn=transcribe, inputs=audio_input, outputs=[text_output, audio_output])
 
-ui.launch(debug=True, share=True)
+
+if __name__ == "__main__":
+  ui.launch(debug=True, share=True)
 
 
 #ui = gr.Interface(fn=transcribe, inputs=gr.Audio(source="microphone", type="filepath"), outputs=["text", gr.Audio()])
