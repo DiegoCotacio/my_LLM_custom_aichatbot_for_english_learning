@@ -34,7 +34,6 @@ def transcribe(audio):
 
     #Text to speech request with eleven labs
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{config.ADVISOR_VOICE_ID}/stream"
-    #url = "https://beta.elevenlabs.io/voice-lab/share/c073d57365bee5082cf125c9a419115de1d6a94b048f6bba2e344827f6b1c1b4/OxBod4VQDmKcgM0NcI3k"
     data = {
         "text" : system_message, #["content"].replace('"',''),
         "voice_settings":{
@@ -49,21 +48,13 @@ def transcribe(audio):
     with open (output_filename, "wb") as ouput:
         ouput.write(response.content)
     
-    # Convertir el audio de respuesta a int de 16 bits
-    #audio_data, sample_rate = sf.read(output_filename)
-    #audio_data = (audio_data * 32767).astype("int16")
-
-    # Guardar el audio convertido en un archivo temporal
-    #converted_output = "converted_output.wav"
-    #sf.write(converted_output, audio_data, sample_rate)
-    
     chat_transcript = ""
     for message in messages:
         #if message['role'] != 'system':
         chat_transcript += message['role'] + ": " + message['content'] + "\n\n"
 
     return chat_transcript, output_filename #converted_output
-"""
+
 # set a custom theme
 theme = gr.themes.Default().set(
     body_background_fill="#000000",
@@ -80,8 +71,9 @@ with gr.Blocks(theme=theme) as ui:
 
     btn = gr.Button("Run")
     btn.click(fn=transcribe, inputs=audio_input, outputs=[text_output, audio_output])
-"""
-#####################
-ui = gr.Interface(fn=transcribe, inputs=gr.Audio(source="microphone", type="filepath"), outputs=["text", gr.Audio()])
+
 ui.launch(debug=True, share=True)
+
+
+#ui = gr.Interface(fn=transcribe, inputs=gr.Audio(source="microphone", type="filepath"), outputs=["text", gr.Audio()])
 
