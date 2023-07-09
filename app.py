@@ -65,7 +65,7 @@ with gr.Blocks() as ui:
     #advisor = gr.Image(value=config.ADVISOR_IMAGE).style(width=config.ADVISOR_IMAGE_WIDTH, height=config.ADVISOR_IMAGE_HEIGHT)
     gr.Markdown("Start typing below and then click **Run** to chat")
     audio_input = gr.Audio(source="microphone", type="filepath")
-    
+
     # text transcript output and audio 
     text_output = gr.Textbox(label="Conversation Transcript")
     audio_output = gr.Audio()
@@ -75,7 +75,7 @@ with gr.Blocks() as ui:
 
 
 if __name__ == "__main__":
-  ui.launch(debug=True, share=True)
+  ui.launch(debug=True)
 
 
 #ui = gr.Interface(fn=transcribe, inputs=gr.Audio(source="microphone", type="filepath"), outputs=["text", gr.Audio()])
