@@ -1,0 +1,6 @@
+openai
+gradio
+pandas 
+numpy
+requests
+soundfile
