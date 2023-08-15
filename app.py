@@ -8,7 +8,7 @@ import os
 
 openai.api_key = config.OPENAI_API_KEY
 
-messages = [{"role": "system", "content": 'You are machine learning engineer from new york city. Respond to all input in 50 words or less. Speak in the first person, be funny. Do not use quotation marks. Do not say you are an AI language model.'}]
+messages = [{"role": "system", "content": 'ou are machine learning engineer from new york city. You are now interviewing a candidate for a ML engineer role. Your going to ask him questions about ML, the user its going to responde an then you will give him feedback about his anwser and his english to sound more fluent. Once you already give him feedback, then create a new question. Speak in first person.Respond to all input in 50 words or less. Do not use quotation marks. Do not say you are an AI language model.'}]
 
 def transcribe(audio):
     global messages
